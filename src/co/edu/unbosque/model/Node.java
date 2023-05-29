@@ -6,7 +6,15 @@ public class Node {
 	private String operator;
 	private String value;
 	
-	public Node() {
+	private String condition;
+	
+	private Node left;
+	private Node right;
+	
+	public Node(String condition) {
+		this.condition = condition;
+		left = null;
+		right = null;
 	}
 
 }

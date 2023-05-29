@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import com.oracle.xmlns.internal.webservices.jaxws_databinding.ExistingAnnotationsType;
+
 import co.edu.unbosque.view.MainView;
 
 public class Controller implements ActionListener {
@@ -24,13 +26,13 @@ public class Controller implements ActionListener {
 		switch(e.getActionCommand()) {
 		
 		case "Definir":
-			System.out.println("Def");
+			
 			break;
 		case "Aplicar":
-			System.out.println("Apli");
+			
 			break;
 		case "Salir":
-			System.out.println("Sali");
+			System.exit(0);
 			break;
 		default:
 			JOptionPane.showMessageDialog(null, "Error");

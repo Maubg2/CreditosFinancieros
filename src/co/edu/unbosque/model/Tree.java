@@ -9,6 +9,14 @@ public class Tree {
 	}
 	
 	public void insertNode(String str) {
+		if(root == null) {
+			root = new Node(str);
+		}else {
+			insertNode(str, root);
+		}
+	}
+	
+	public void insertNode(String str, Node node) {
 		
 	}
 	
