@@ -4,17 +4,25 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class MainView extends JFrame{
+	
+	private JPanel panelAux;
+	private JTextField fieldForOptionDefine;
+	private JLabel labelInputVar;
 	
 	private JPanel panel;
 	private JLabel title;
 	private JButton defineTree;
 	private JButton applyTree;
 	private JButton goOut;
+	private JComboBox<String> optionsDefine;
+	private String arrForOptionsDefine[] = {"Mayor que", "Menor que", "Mayor o igual que", "Menor o igual que", "Diferente de"};
 	
 	private Font font = new Font("Tahoma", Font.BOLD, 15);
 	
@@ -64,8 +72,21 @@ public class MainView extends JFrame{
 		goOut.setForeground(Color.WHITE);
 		panel.add(goOut);
 		
+		optionsDefine = new JComboBox<>(arrForOptionsDefine);
+		panel.add(optionsDefine);
+		
+		//Panel para la opción definir árbol
+		panelAux = new JPanel();
+		fieldForOptionDefine = new JTextField();
+		fieldForOptionDefine.setSize(40, 40);
+		labelInputVar = new JLabel();
+		
+		panelAux.add(labelInputVar);
+		panelAux.add(optionsDefine);
+		panelAux.add(fieldForOptionDefine);
+		
 	}
-
+	
 	public JButton getDefineTree() {
 		return defineTree;
 	}
@@ -88,6 +109,54 @@ public class MainView extends JFrame{
 
 	public void setGoOut(JButton goOut) {
 		this.goOut = goOut;
+	}
+
+	public JComboBox<String> getOptionsDefine() {
+		return optionsDefine;
+	}
+
+	public void setOptionsDefine(JComboBox<String> optionsDefine) {
+		this.optionsDefine = optionsDefine;
+	}
+
+	public String[] getArrForOptionsDefine() {
+		return arrForOptionsDefine;
+	}
+
+	public void setArrForOptionsDefine(String[] arrForOptionsDefine) {
+		this.arrForOptionsDefine = arrForOptionsDefine;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	public JPanel getPanelAux() {
+		return panelAux;
+	}
+
+	public void setPanelAux(JPanel panelAux) {
+		this.panelAux = panelAux;
+	}
+
+	public JTextField getFieldForOptionDefine() {
+		return fieldForOptionDefine;
+	}
+
+	public void setFieldForOptionDefine(JTextField fieldForOptionDefine) {
+		this.fieldForOptionDefine = fieldForOptionDefine;
+	}
+
+	public JLabel getLabelInputVar() {
+		return labelInputVar;
+	}
+
+	public void setLabelInputVar(JLabel labelInputVar) {
+		this.labelInputVar = labelInputVar;
 	}
 
 }
