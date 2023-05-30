@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
+import javax.swing.plaf.metal.MetalIconFactory.TreeFolderIcon;
 
 import co.edu.unbosque.model.Tree;
 import co.edu.unbosque.view.MainView;
@@ -12,6 +13,8 @@ public class Controller implements ActionListener {
 	
 	private MainView mv;
 	private Tree tree;
+	
+	private boolean treeDefine = false;
 	
 	public Controller() {
 		
@@ -129,6 +132,7 @@ public class Controller implements ActionListener {
 				tree.insertNode("1", "Puntaje centrales de riesgo", scoreOperator, scoreLimit);
 				tree.insertNode("2", "Puntaje centrales de riesgo", scoreOperator, scoreLimit);
 				
+				treeDefine = true;
 				
 			}catch(NumberFormatException ee) {
 				JOptionPane.showMessageDialog(null, "Debe ingresar un número en el segundo campo");
@@ -138,7 +142,11 @@ public class Controller implements ActionListener {
 			break;
 		case "Aplicar":
 			
-			tree.showInOrder();
+			if(treeDefine) {
+				tree.showInOrder();
+			}else {
+				JOptionPane.showMessageDialog(null, "Debe definir primero el árbol");
+			}
 			
 			break;
 		case "Salir":
