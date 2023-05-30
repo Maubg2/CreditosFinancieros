@@ -5,15 +5,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import co.edu.unbosque.model.Tree;
 import co.edu.unbosque.view.MainView;
 
 public class Controller implements ActionListener {
 	
 	private MainView mv;
+	private Tree tree;
 	
 	public Controller() {
 		
 		mv = new MainView();
+		tree = new Tree();
 		setListeners();
 		
 	}
@@ -48,6 +51,7 @@ public class Controller implements ActionListener {
 					JOptionPane.showMessageDialog(null, "La edad debe estar entre los 18 y 75 años");
 					break;
 				}
+				tree.insertNode("1", "Edad", ageOperator, ageLimit);
 				
 				
 				
@@ -72,7 +76,7 @@ public class Controller implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Ingresos exagerados");
 					break;
 				}
-				
+				tree.insertNode("1", "Ingresos", incomeOperator, incomeLimit);
 				
 				
 				
@@ -95,6 +99,7 @@ public class Controller implements ActionListener {
 					JOptionPane.showMessageDialog(null, "No se puede solicitar menos de un salario minimo");
 					break;
 				}
+				tree.insertNode("1", "Monto solicitado", amountOperator, amountLimit);
 				
 				
 				//0-500 riesgo alto
@@ -121,6 +126,10 @@ public class Controller implements ActionListener {
 					break;
 				}
 				
+				tree.insertNode("1", "Puntaje centrales de riesgo", scoreOperator, scoreLimit);
+				tree.insertNode("2", "Puntaje centrales de riesgo", scoreOperator, scoreLimit);
+				
+				
 			}catch(NumberFormatException ee) {
 				JOptionPane.showMessageDialog(null, "Debe ingresar un número en el segundo campo");
 				break;
@@ -128,6 +137,9 @@ public class Controller implements ActionListener {
 			
 			break;
 		case "Aplicar":
+			
+			tree.showInOrder();
+			
 			break;
 		case "Salir":
 			System.exit(0);
