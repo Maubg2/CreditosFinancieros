@@ -31,7 +31,7 @@ public class MainView extends JFrame{
 		getContentPane().setLayout(null);
 		setTitle("Creditos financieros");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(800, 500);
+		setSize(600, 400);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
@@ -47,26 +47,26 @@ public class MainView extends JFrame{
 		
 		title = new JLabel("Creditos financieros");
 	//	title.setFont(font);
-		title.setBounds(250, 20, 280, 30);
+		title.setBounds(180, 20, 280, 30);
 		title.setFont(new Font("Tahoma", Font.BOLD, 25));
 		panel.add(title);
 		
 		defineTree = new JButton("Definir");
-		defineTree.setBounds(120, 400, 100, 30);
+		defineTree.setBounds(80, 300, 100, 30);
 		defineTree.setFont(font);
 		defineTree.setBackground(Color.BLACK);
 		defineTree.setForeground(Color.WHITE);
 		panel.add(defineTree);
 		
 		applyTree = new JButton("Aplicar");
-		applyTree.setBounds(330, 400, 100, 30);
+		applyTree.setBounds(240, 300, 100, 30);
 		applyTree.setFont(font);
 		applyTree.setBackground(Color.BLACK);
 		applyTree.setForeground(Color.WHITE);
 		panel.add(applyTree);
 		
 		goOut = new JButton("Salir");
-		goOut.setBounds(540, 400, 100, 30);
+		goOut.setBounds(400, 300, 100, 30);
 		goOut.setFont(font);
 		goOut.setBackground(Color.BLACK);
 		goOut.setForeground(Color.WHITE);

@@ -56,8 +56,9 @@ public class Controller implements ActionListener {
 					JOptionPane.showMessageDialog(null, "La edad debe estar entre los 18 y 75 años");
 					break;
 				}
-				tree.insertNode("1", "Edad", ageOperator, ageLimitCasted);
 				
+				tree.insertNode("1", "Edad", ageOperator, ageLimitCasted);
+				tree.insertNode("3", "Edad", "Crédito rechazado", 0);
 				
 				
 				
@@ -70,19 +71,20 @@ public class Controller implements ActionListener {
 				int incomeLimitCasted = Integer.parseInt(incomeLimit);
 				
 				if(incomeLimitCasted < 1300000) {
-					JOptionPane.showMessageDialog(null, "Debe ganar por lo menos un salario minimo");
+					JOptionPane.showMessageDialog(null, "Debe ganar por lo menos un salario minimo (1300.000)");
 					break;
 				}
 				if(incomeLimitCasted == 1300000 && incomeOperator.equals("Menor que")) {
-					JOptionPane.showMessageDialog(null, "Debe ganar por lo menos un salario minimo");
+					JOptionPane.showMessageDialog(null, "Debe ganar por lo menos un salario minimo (1300.000)");
 					break;
 				}
 				if(incomeLimitCasted > 100000000) {
 					JOptionPane.showMessageDialog(null, "Ingresos exagerados");
 					break;
 				}
-				tree.insertNode("1", "Ingresos", incomeOperator, incomeLimitCasted);
 				
+				tree.insertNode("1", "Ingresos", incomeOperator, incomeLimitCasted);
+				tree.insertNode("2", "Ingresos", "Crédito rechazado", 0);
 				
 				
 				mv.getFieldForOptionDefine().setText("Ejemplo: 7500000");
@@ -105,7 +107,7 @@ public class Controller implements ActionListener {
 					break;
 				}
 				tree.insertNode("1", "Monto solicitado", amountOperator, amountLimitCasted);
-				
+				tree.insertNode("2", "Monto solicitado", "Crédito rechazado", 0);
 				
 				//0-500 riesgo alto
 				//500-599 riesgo medio alto
@@ -132,7 +134,8 @@ public class Controller implements ActionListener {
 				}
 				
 				tree.insertNode("1", "Puntaje centrales de riesgo", scoreOperator, scoreLimitCasted);
-				tree.insertNode("2", "Puntaje centrales de riesgo", scoreOperator, scoreLimitCasted);
+				tree.insertNode("2", "Puntaje centrales de riesgo", "No sé que hacer", 0);
+				//	tree.insertNode("2", "Puntaje centrales de riesgo", scoreOperator, scoreLimitCasted);
 				
 				JOptionPane.showMessageDialog(null, "Definiciones del árbol creadas correctamente");
 				treeDefine = true;
