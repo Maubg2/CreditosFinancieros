@@ -4,14 +4,14 @@ public class Node {
 	
 	private String inputVar;
 	private String operator;
-	private String value;
+	private int value;
 	
 	private String condition;
 	
 	private Node left;
 	private Node right;
 	
-	public Node(String condition, String inputVar, String operator, String value) {
+	public Node(String condition, String inputVar, String operator, int value) {
 		this.condition = condition;
 		this.inputVar = inputVar;
 		this.operator = operator;
@@ -52,11 +52,11 @@ public class Node {
 		this.operator = operator;
 	}
 
-	public String getValue() {
+	public int getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 

@@ -14,6 +14,11 @@ public class Controller implements ActionListener {
 	private MainView mv;
 	private Tree tree;
 	
+	private String ageOperator, ageLimit;
+	private String incomeOperator, incomeLimit;
+	private String amountOperator, amountLimit;
+	private String scoreOperator, scoreLimit;
+	
 	private boolean treeDefine = false;
 	
 	public Controller() {
@@ -31,12 +36,9 @@ public class Controller implements ActionListener {
 		
 		case "Definir":
 			
+			tree.deleteTree();
+			
 			try {
-				
-				String ageOperator, ageLimit;
-				String incomeOperator, incomeLimit;
-				String amountOperator, amountLimit;
-				String scoreOperator, scoreLimit;
 				
 				mv.getFieldForOptionDefine().setText("Ejemplo: 18");
 				mv.getLabelInputVar().setText("Edad: ");
@@ -54,7 +56,7 @@ public class Controller implements ActionListener {
 					JOptionPane.showMessageDialog(null, "La edad debe estar entre los 18 y 75 años");
 					break;
 				}
-				tree.insertNode("1", "Edad", ageOperator, ageLimit);
+				tree.insertNode("1", "Edad", ageOperator, ageLimitCasted);
 				
 				
 				
@@ -79,7 +81,7 @@ public class Controller implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Ingresos exagerados");
 					break;
 				}
-				tree.insertNode("1", "Ingresos", incomeOperator, incomeLimit);
+				tree.insertNode("1", "Ingresos", incomeOperator, incomeLimitCasted);
 				
 				
 				
@@ -94,7 +96,7 @@ public class Controller implements ActionListener {
 					JOptionPane.showMessageDialog(null, "El monto solicitado debe ser menor a cinco veces los ingresos del solicitante ("+(incomeLimitCasted*5)+")");
 					break;
 				}
-				if(amountLimitCasted == incomeLimitCasted*5 && amountOperator.equals("Menor que")) {
+				if(amountLimitCasted == incomeLimitCasted*5 && amountOperator.equals("Mayor que")) {
 					JOptionPane.showMessageDialog(null, "El monto solicitado debe ser menor a cinco veces los ingresos del solicitante ("+(incomeLimitCasted*5)+")");
 					break;
 				}
@@ -102,13 +104,13 @@ public class Controller implements ActionListener {
 					JOptionPane.showMessageDialog(null, "No se puede solicitar menos de un salario minimo");
 					break;
 				}
-				tree.insertNode("1", "Monto solicitado", amountOperator, amountLimit);
+				tree.insertNode("1", "Monto solicitado", amountOperator, amountLimitCasted);
 				
 				
 				//0-500 riesgo alto
-				//501-600 riesgo medio alto
-				//601-750 riesgo medio
-				//751-1000 bajo riesgo 
+				//500-599 riesgo medio alto
+				//600-749 riesgo medio
+				//750-1000 bajo riesgo 
 				mv.getFieldForOptionDefine().setText("Ejemplo: 500");
 				mv.getLabelInputVar().setText("Ptos centrales de riesgo: ");
 				JOptionPane.showOptionDialog(null, mv.getPanelAux(), "Requisitos para el crédito", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, mv.getArrForOptionsDefine()[0]);
@@ -129,9 +131,10 @@ public class Controller implements ActionListener {
 					break;
 				}
 				
-				tree.insertNode("1", "Puntaje centrales de riesgo", scoreOperator, scoreLimit);
-				tree.insertNode("2", "Puntaje centrales de riesgo", scoreOperator, scoreLimit);
+				tree.insertNode("1", "Puntaje centrales de riesgo", scoreOperator, scoreLimitCasted);
+				tree.insertNode("2", "Puntaje centrales de riesgo", scoreOperator, scoreLimitCasted);
 				
+				JOptionPane.showMessageDialog(null, "Definiciones del árbol creadas correctamente");
 				treeDefine = true;
 				
 			}catch(NumberFormatException ee) {
@@ -143,7 +146,7 @@ public class Controller implements ActionListener {
 		case "Aplicar":
 			
 			if(treeDefine) {
-				tree.showInOrder();
+				tree.showTree();
 			}else {
 				JOptionPane.showMessageDialog(null, "Debe definir primero el árbol");
 			}

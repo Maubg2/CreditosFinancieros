@@ -10,7 +10,7 @@ public class Tree {
 		root = null;
 	}
 	
-	public void insertNode(String str, String inputVar, String operator, String value) {
+	public void insertNode(String str, String inputVar, String operator, int value) {
 		if(root == null) {
 			root = new Node(str, inputVar, operator, value);
 		}else {
@@ -18,7 +18,11 @@ public class Tree {
 		}
 	}
 	
-	public void insertNode(String str, String inputVar, String operator, String value, Node node) {
+	public void deleteTree() {
+		root = null;
+	}
+	
+	public void insertNode(String str, String inputVar, String operator, int value, Node node) {
 		if(str.equals("1")) {
 			if(node.getLeft() == null) {
 				node.setLeft(new Node(str, inputVar, operator, value));
@@ -41,18 +45,221 @@ public class Tree {
 		}
 	}
 	
-	public void showInOrder(Node node) {
+	public void showTree(Node node) {
+		int ageCasted = 0, incomeCasted = 0, amountCasted = 0, scoreCasted = 0;
+		boolean finalized = false;
+		
 		if(node != null) {
-			String i = JOptionPane.showInputDialog(null, "¿Su edad es "+node.getOperator()+" "+node.getValue()+"?\n"
-					+ "1. Si\n"
-					+ "2. No\n");
+			while(!finalized) {
+				
+				String age = JOptionPane.showInputDialog(null, "Digite su edad: ");
+				
+				try {
+					ageCasted = Integer.parseInt(age);
+				}catch(NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar un número");
+				}
+				
+				if(node.getOperator().equals("Mayor que")) {
+					if(ageCasted > node.getValue() && ageCasted < 76) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "Debe tener entre "+(node.getValue()+1)+" y 75 años");
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}else if(node.getOperator().equals("Menor que")) {
+					if(ageCasted < node.getValue() && ageCasted >= 18) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "La edad debe estar entre 18 y "+(node.getValue()-1)+" años");
+						break;
+					}
+				}else if(node.getOperator().equals("Mayor o igual que")) {
+					if(ageCasted >= node.getValue() && ageCasted < 76) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "La edad debe estar entre "+node.getValue()+" y 75 años");
+						break;
+					}
+				}else if(node.getOperator().equals("Menor o igual que")) {
+					if(ageCasted <= node.getValue() && ageCasted >= 18) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "La edad debe estar entre 18 y "+node.getValue()+" años");
+						break;
+					}
+				}else if(node.getOperator().equals("Diferente de")) {
+					if(ageCasted != node.getValue() && ageCasted >= 18 && ageCasted <= 75) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "La edad debe ser diferente de "+node.getValue()+" y entre los 18 y 75 años");
+						break;
+					}
+				}else {
+					System.out.println("Fallaaaa");
+				}
+				
+				String income = JOptionPane.showInputDialog(null, "Escriba sus ingresos al mes: ");
+				
+				try {
+					incomeCasted = Integer.parseInt(income);
+				}catch(NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar un número");
+				}
+				
+				if(node.getOperator().equals("Mayor que")) {
+					if(incomeCasted > node.getValue() && incomeCasted < 100000000) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "Debe ganar al mes por lo menos "+(node.getValue()+1));
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}else if(node.getOperator().equals("Menor que")) {
+					if(incomeCasted < node.getValue() && incomeCasted >= 1300000) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "Debe ganar al mes entre 1300.000 y "+(node.getValue()-1));
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}else if(node.getOperator().equals("Mayor o igual que")) {
+					if(incomeCasted >= node.getValue() && incomeCasted < 100000000) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "Debe ganar al mes por lo menos "+node.getValue());
+						break;
+					}
+				}else if(node.getOperator().equals("Menor o igual que")) {
+					if(incomeCasted <= node.getValue() && incomeCasted >= 1300000) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "Debe ganar al mes entre 1300.000 y "+node.getValue());
+						break;
+					}
+				}else if(node.getOperator().equals("Diferente de")) {
+					if(incomeCasted != node.getValue() && incomeCasted >= 1300000 && incomeCasted <= 100000000) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "El ingreso mensual debe ser diferente de "+node.getValue()+" y mayor a 1300.000");
+						break;
+					}
+				}
+				
+				
+				
+				String amount = JOptionPane.showInputDialog(null, "Escriba el valor del crédito: ");
+				
+				try {
+					amountCasted = Integer.parseInt(amount);
+				}catch(NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar un número");
+				}
+				
+				if(node.getOperator().equals("Mayor que")) {
+					if(amountCasted > node.getValue() && amountCasted <= (incomeCasted*5)) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "Puede pedir el crédito entre "+(node.getValue()+1)+" y "+(incomeCasted*5));
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}else if(node.getOperator().equals("Menor que")) {
+					if(amountCasted < node.getValue() && amountCasted >= 1300000) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "Puede pedir el crédito entre 1300.000 y "+(node.getValue()-1));
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}else if(node.getOperator().equals("Mayor o igual que")) {
+					if(amountCasted >= node.getValue() && amountCasted <= (incomeCasted*5)) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "Puede pedir el crédito entre "+node.getValue()+" y "+(incomeCasted*5));
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}else if(node.getOperator().equals("Menor o igual que")) {
+					if(amountCasted <= node.getValue() && amountCasted >= 1300000) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "Puede pedir eñ crédito entre 1300.000 y "+node.getValue());
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}else if(node.getOperator().equals("Diferente de")) {
+					if(amountCasted != node.getValue() && amountCasted >= 1300000 && amountCasted <= (incomeCasted*5)) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "Puede pedir el crédito diferente de "+node.getValue()+" y entre 1300.000 y "+(incomeCasted*5));
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}
+				
+				
+				////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				String score = JOptionPane.showInputDialog(null, "Escriba su puntaje en centrales de riesgo: ");
+				
+				try {
+					scoreCasted = Integer.parseInt(score);
+				}catch(NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar un número");
+				}
+				
+				if(node.getOperator().equals("Mayor que")) {
+					if(scoreCasted > node.getValue() && scoreCasted <= 1000) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "El puntaje debe estar entre "+(node.getValue()+1)+" y 1000");
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}else if(node.getOperator().equals("Menor que")) {
+					if(scoreCasted < node.getValue() && scoreCasted >= 500) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "El puntaje debe estar entre 500 y "+(node.getValue()-1));
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}else if(node.getOperator().equals("Mayor o igual que")) {
+					if(scoreCasted >= node.getValue() && scoreCasted <= 1000) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "El puntaje debe estar entre "+node.getValue()+" y 1000");
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}else if(node.getOperator().equals("Menor o igual que")) {
+					if(scoreCasted <= node.getValue() && scoreCasted >= 500) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "El puntaje debe estar entre 500 y "+node.getValue());
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}else if(node.getOperator().equals("Diferente de")) {
+					if(scoreCasted != node.getValue() && scoreCasted >= 500 && scoreCasted <= 1000) {
+						node = node.getLeft();
+					}else {
+						JOptionPane.showMessageDialog(null, "El puntaje no puede ser "+node.getValue()+" y debe estar entre 500 y 1000");
+						JOptionPane.showMessageDialog(null, "Crédito rechazado");
+						break;
+					}
+				}
+				
+				finalized = true;
+				
+			}
 			
-			showInOrder(node.getLeft());
 		}
 	}
 	
-	public void showInOrder() {
-		showInOrder(root);
+	public void showTree() {
+		showTree(root);
 	}
 	
 }
