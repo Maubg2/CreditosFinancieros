@@ -5,16 +5,16 @@ import javax.swing.JOptionPane;
 public class Tree {
 	
 	private Node root;
-
+	
 	public Tree() {
 		root = null;
 	}
 	
-	public void insertNode(String str, String inputVar, String operator, int value) {
+	public void insertNode(String str, String inputVar, String operator, int value, String rule) {
 		if(root == null) {
-			root = new Node(str, inputVar, operator, value);
+			root = new Node(str, inputVar, operator, value, rule);
 		}else {
-			insertNode(str, inputVar, operator, value, root);
+			insertNode(str, inputVar, operator, value, root, rule);
 		}
 	}
 	
@@ -22,25 +22,25 @@ public class Tree {
 		root = null;
 	}
 	
-	public void insertNode(String str, String inputVar, String operator, int value, Node node) {
+	public void insertNode(String str, String inputVar, String operator, int value, Node node, String rule) {
 		if(str.equals("1")) {
 			if(node.getLeft() == null) {
-				node.setLeft(new Node(str, inputVar, operator, value));
+				node.setLeft(new Node(str, inputVar, operator, value, rule));
 			}else {
-				insertNode(str, inputVar, operator, value, node.getLeft());
+				insertNode(str, inputVar, operator, value, node.getLeft(), rule);
 			}
 		}
 		else if(str.equals("2")) {
 			if(node.getLeft().getInputVar().equals(inputVar)) {
-				node.getLeft().setRight(new Node(str, inputVar, operator, value));
+				node.getLeft().setRight(new Node(str, inputVar, operator, value, rule));
 			}else {
-				insertNode(str, inputVar, operator, value, node.getLeft());
+				insertNode(str, inputVar, operator, value, node.getLeft(), rule);
 			}
 		}else {
 			if(node.getRight() == null) {
-				node.setRight(new Node(str, inputVar, operator, value));
+				node.setRight(new Node(str, inputVar, operator, value, rule));
 			}else {
-				insertNode(str, inputVar, operator, value, node.getRight());
+				insertNode(str, inputVar, operator, value, node.getRight(), rule);
 			}
 		}
 	}
@@ -61,15 +61,34 @@ public class Tree {
 				}
 				
 				if(node.getOperator().equals("Mayor que")) {
-					if(ageCasted > node.getValue() && ageCasted < 76) {
-						node = node.getLeft();
+					
+					if(node.getRule().equals("1")) {
+						
+						if(ageCasted > node.getValue() && ageCasted <= 75) {
+							node = node.getLeft();
+						}
+						
+					}else if(node.getRule().equals("2")) {
+						
+						if(ageCasted > node.getValue() && ageCasted <= 75) {
+							
+						}
+						
+					}else if(node.getRule().equals("3")) {
+						
+					}
+					
+				/*	if(ageCasted > node.getValue() && ageCasted < 76) {
+						if(node.getRule().equals("1")) {
+							node = node.getLeft();
+						}
 					}else {
 						
 						JOptionPane.showMessageDialog(null, "Debe tener entre "+(node.getValue()+1)+" y 75 años");
 						node = node.getRight();
 						JOptionPane.showMessageDialog(null, node.getOperator());
 						break;
-					}
+					}*/
 				}else if(node.getOperator().equals("Menor que")) {
 					if(ageCasted < node.getValue() && ageCasted >= 18) {
 						node = node.getLeft();
@@ -237,7 +256,7 @@ public class Tree {
 				
 				if(node.getOperator().equals("Mayor que")) {
 					if(scoreCasted > node.getValue() && scoreCasted <= 1000) {
-						insertNode("1", "Crédito aprobado con el valor de "+amountCasted, null, amountCasted);
+						insertNode("1", "Crédito aprobado con el valor de "+amountCasted, null, amountCasted, null);
 						node = node.getLeft();
 					}else {
 						JOptionPane.showMessageDialog(null, "El puntaje debe estar entre "+(node.getValue()+1)+" y 1000");
@@ -247,7 +266,7 @@ public class Tree {
 					}
 				}else if(node.getOperator().equals("Menor que")) {
 					if(scoreCasted < node.getValue() && scoreCasted >= 500) {
-						insertNode("1", "Crédito aprobado con el valor de "+amountCasted, null, amountCasted);
+						insertNode("1", "Crédito aprobado con el valor de "+amountCasted, null, amountCasted, null);
 						node = node.getLeft();
 					}else {
 						JOptionPane.showMessageDialog(null, "El puntaje debe estar entre 500 y "+(node.getValue()-1));
@@ -257,7 +276,7 @@ public class Tree {
 					}
 				}else if(node.getOperator().equals("Mayor o igual que")) {
 					if(scoreCasted >= node.getValue() && scoreCasted <= 1000) {
-						insertNode("1", "Crédito aprobado con el valor de "+amountCasted, null, amountCasted);
+						insertNode("1", "Crédito aprobado con el valor de "+amountCasted, null, amountCasted, null);
 						node = node.getLeft();
 					}else {
 						JOptionPane.showMessageDialog(null, "El puntaje debe estar entre "+node.getValue()+" y 1000");
@@ -267,7 +286,7 @@ public class Tree {
 					}
 				}else if(node.getOperator().equals("Menor o igual que")) {
 					if(scoreCasted <= node.getValue() && scoreCasted >= 500) {
-						insertNode("1", "Crédito aprobado con el valor de "+amountCasted, null, amountCasted);
+						insertNode("1", "Crédito aprobado con el valor de "+amountCasted, null, amountCasted, null);
 						node = node.getLeft();
 					}else {
 						JOptionPane.showMessageDialog(null, "El puntaje debe estar entre 500 y "+node.getValue());
@@ -277,7 +296,7 @@ public class Tree {
 					}
 				}else if(node.getOperator().equals("Diferente de")) {
 					if(scoreCasted != node.getValue() && scoreCasted >= 500 && scoreCasted <= 1000) {
-						insertNode("1", "Crédito aprobado con el valor de "+amountCasted, null, amountCasted);
+						insertNode("1", "Crédito aprobado con el valor de "+amountCasted, null, amountCasted, null);
 						node = node.getLeft();
 					}else {
 						JOptionPane.showMessageDialog(null, "El puntaje no puede ser "+node.getValue()+" y debe estar entre 500 y 1000");

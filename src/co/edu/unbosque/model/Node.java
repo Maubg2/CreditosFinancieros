@@ -5,17 +5,19 @@ public class Node {
 	private String inputVar;
 	private String operator;
 	private int value;
+	private String rule;
 	
 	private String condition;
 	
 	private Node left;
 	private Node right;
 	
-	public Node(String condition, String inputVar, String operator, int value) {
+	public Node(String condition, String inputVar, String operator, int value, String rule) {
 		this.condition = condition;
 		this.inputVar = inputVar;
 		this.operator = operator;
 		this.value = value;
+		this.rule = rule;
 		left = null;
 		right = null;
 	}
@@ -66,6 +68,14 @@ public class Node {
 
 	public void setCondition(String condition) {
 		this.condition = condition;
+	}
+
+	public String getRule() {
+		return rule;
+	}
+
+	public void setRule(String rule) {
+		this.rule = rule;
 	}
 
 }

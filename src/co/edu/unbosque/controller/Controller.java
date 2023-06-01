@@ -57,8 +57,14 @@ public class Controller implements ActionListener {
 					break;
 				}
 				
-				tree.insertNode("1", "Edad", ageOperator, ageLimitCasted);
-				tree.insertNode("3", "Edad", "Crédito rechazado", 0);
+				//Falta verificar que sea de uno a 3 la entrada
+				String ageOptions = JOptionPane.showInputDialog("Si la edad del solicitante es "+ageOperator+" "+ageLimit+": \n"
+						+ "1. Conectar con la siguiente premisa\n"
+						+ "2. Rechazar\n"
+						+ "3. No sé que hacer");
+				
+				tree.insertNode("1", "Edad", ageOperator, ageLimitCasted, ageOptions);
+				tree.insertNode("3", "Edad", "Crédito rechazado", 0, ageOptions);
 				
 				
 				
@@ -83,8 +89,13 @@ public class Controller implements ActionListener {
 					break;
 				}
 				
-				tree.insertNode("1", "Ingresos", incomeOperator, incomeLimitCasted);
-				tree.insertNode("2", "Ingresos", "Crédito rechazado", 0);
+				String incomeOptions = JOptionPane.showInputDialog("Si el ingreso mensual del solicitante es "+incomeOperator+" "+incomeLimit+": \n"
+						+ "1. Conectar con la siguiente premisa\n"
+						+ "2. Rechazar\n"
+						+ "3, No sé que hacer");
+				
+				tree.insertNode("1", "Ingresos", incomeOperator, incomeLimitCasted, incomeOptions);
+				tree.insertNode("2", "Ingresos", "Crédito rechazado", 0, incomeOptions);
 				
 				
 				mv.getFieldForOptionDefine().setText("Ejemplo: 7500000");
@@ -106,8 +117,14 @@ public class Controller implements ActionListener {
 					JOptionPane.showMessageDialog(null, "No se puede solicitar menos de un salario minimo");
 					break;
 				}
-				tree.insertNode("1", "Monto solicitado", amountOperator, amountLimitCasted);
-				tree.insertNode("2", "Monto solicitado", "Crédito rechazado", 0);
+				
+				String amountOptions = JOptionPane.showInputDialog("Si el monto del solicitante es "+amountOperator+" "+amountLimit+": \n"
+						+ "1. Conectar con la siguiente premisa\n"
+						+ "2. Rechazar\n"
+						+ "3. No sé que hacer");
+				
+				tree.insertNode("1", "Monto solicitado", amountOperator, amountLimitCasted, amountOptions);
+				tree.insertNode("2", "Monto solicitado", "Crédito rechazado", 0, amountOptions);
 				
 				//0-500 riesgo alto
 				//500-599 riesgo medio alto
@@ -133,8 +150,13 @@ public class Controller implements ActionListener {
 					break;
 				}
 				
-				tree.insertNode("1", "Puntaje centrales de riesgo", scoreOperator, scoreLimitCasted);
-				tree.insertNode("2", "Puntaje centrales de riesgo", "No sé que hacer", 0);
+				String scoreOptions = JOptionPane.showInputDialog("Si los el puntaje ce centrales de riesgo del usuario es "+scoreOperator+" "+scoreLimit+": \n"
+						+ "1. Conectar con la siguiente premisa\n"
+						+ "2. Rechazar\n"
+						+ "3. No sé que hacer");
+				
+				tree.insertNode("1", "Puntaje centrales de riesgo", scoreOperator, scoreLimitCasted, scoreOptions);
+				tree.insertNode("2", "Puntaje centrales de riesgo", "No sé que hacer", 0, scoreOptions);
 				//	tree.insertNode("2", "Puntaje centrales de riesgo", scoreOperator, scoreLimitCasted);
 				
 				JOptionPane.showMessageDialog(null, "Definiciones del árbol creadas correctamente");
