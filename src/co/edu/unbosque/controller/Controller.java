@@ -40,14 +40,16 @@ public class Controller implements ActionListener {
 			
 			try {
 				
-				mv.getFieldForOptionDefine().setText("Ejemplo: 18");
+				//Se setean los campos cada variable
+				mv.getFieldForOptionDefine().setText("      ");
 				mv.getLabelInputVar().setText("Edad: ");
 				
 				JOptionPane.showOptionDialog(null, mv.getPanelAux(), "Requisitos para el crédito", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, mv.getArrForOptionsDefine());
 				ageOperator = (String)mv.getOptionsDefine().getSelectedItem();
-				ageLimit = mv.getFieldForOptionDefine().getText();
+				ageLimit = mv.getFieldForOptionDefine().getText().trim();
 				int ageLimitCasted = Integer.parseInt(ageLimit);
 				
+				//La edad para sacar un crédito va a estar entre 18 y 75 años
 				if(ageLimitCasted < 18 || ageLimitCasted > 75) {
 					JOptionPane.showMessageDialog(null, "La edad debe estar entre los 18 y 75 años");
 					break;
@@ -57,23 +59,27 @@ public class Controller implements ActionListener {
 					break;
 				}
 				
-				//Falta verificar que sea de uno a 3 la entrada
 				String ageOptions = JOptionPane.showInputDialog("Si la edad del solicitante es "+ageOperator+" "+ageLimit+": \n"
 						+ "1. Conectar con la siguiente premisa\n"
 						+ "2. Rechazar\n"
 						+ "3. No sé que hacer");
+				
+				if(!ageOptions.matches("[1-3]{1}")) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar un valor de 1 a 3");
+					break;
+				}
 				
 				tree.insertNode("1", "Edad", ageOperator, ageLimitCasted, ageOptions);
 				tree.insertNode("3", "Edad", "Crédito rechazado", 0, ageOptions);
 				
 				
 				
-				mv.getFieldForOptionDefine().setText("Ejemplo: 1500000");
+				mv.getFieldForOptionDefine().setText("      ");
 				mv.getLabelInputVar().setText("Ingresos: ");
 				
 				JOptionPane.showOptionDialog(null, mv.getPanelAux(), "Requisitos para el crédito", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, mv.getArrForOptionsDefine()[0]);
 				incomeOperator = (String)mv.getOptionsDefine().getSelectedItem();
-				incomeLimit = mv.getFieldForOptionDefine().getText();
+				incomeLimit = mv.getFieldForOptionDefine().getText().trim();
 				int incomeLimitCasted = Integer.parseInt(incomeLimit);
 				
 				if(incomeLimitCasted < 1300000) {
@@ -94,15 +100,20 @@ public class Controller implements ActionListener {
 						+ "2. Rechazar\n"
 						+ "3, No sé que hacer");
 				
+				if(!incomeOptions.matches("[1-3]{1}")) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar un valor de 1 a 3");
+					break;
+				}
+				
 				tree.insertNode("1", "Ingresos", incomeOperator, incomeLimitCasted, incomeOptions);
 				tree.insertNode("2", "Ingresos", "Crédito rechazado", 0, incomeOptions);
 				
 				
-				mv.getFieldForOptionDefine().setText("Ejemplo: 7500000");
+				mv.getFieldForOptionDefine().setText("        ");
 				mv.getLabelInputVar().setText("Monto solicitado: ");
 				JOptionPane.showOptionDialog(null, mv.getPanelAux(), "Requisitos para el crédito", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, mv.getArrForOptionsDefine()[0]);
 				amountOperator = (String)mv.getOptionsDefine().getSelectedItem();
-				amountLimit = mv.getFieldForOptionDefine().getText();
+				amountLimit = mv.getFieldForOptionDefine().getText().trim();
 				int amountLimitCasted = Integer.parseInt(amountLimit);
 				
 				if(amountLimitCasted > incomeLimitCasted*5) {
@@ -123,18 +134,19 @@ public class Controller implements ActionListener {
 						+ "2. Rechazar\n"
 						+ "3. No sé que hacer");
 				
+				if(!amountOptions.matches("[1-3]{1}")) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar un valor de 1 a 3");
+					break;
+				}
+				
 				tree.insertNode("1", "Monto solicitado", amountOperator, amountLimitCasted, amountOptions);
 				tree.insertNode("2", "Monto solicitado", "Crédito rechazado", 0, amountOptions);
 				
-				//0-500 riesgo alto
-				//500-599 riesgo medio alto
-				//600-749 riesgo medio
-				//750-1000 bajo riesgo 
-				mv.getFieldForOptionDefine().setText("Ejemplo: 500");
+				mv.getFieldForOptionDefine().setText("       ");
 				mv.getLabelInputVar().setText("Ptos centrales de riesgo: ");
 				JOptionPane.showOptionDialog(null, mv.getPanelAux(), "Requisitos para el crédito", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, mv.getArrForOptionsDefine()[0]);
 				scoreOperator = (String)mv.getOptionsDefine().getSelectedItem();
-				scoreLimit = mv.getFieldForOptionDefine().getText();
+				scoreLimit = mv.getFieldForOptionDefine().getText().trim();
 				int scoreLimitCasted = Integer.parseInt(scoreLimit);
 				
 				if(scoreLimitCasted < 500) {
@@ -150,13 +162,18 @@ public class Controller implements ActionListener {
 					break;
 				}
 				
-				String scoreOptions = JOptionPane.showInputDialog("Si los el puntaje ce centrales de riesgo del usuario es "+scoreOperator+" "+scoreLimit+": \n"
+				String scoreOptions = JOptionPane.showInputDialog("Si el puntaje de centrales de riesgo del usuario es "+scoreOperator+" "+scoreLimit+": \n"
 						+ "1. Conectar con la siguiente premisa\n"
 						+ "2. Rechazar\n"
 						+ "3. No sé que hacer");
 				
+				if(!scoreOptions.matches("[1-3]{1}")) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar un valor de 1 a 3");
+					break;
+				}
+				
 				tree.insertNode("1", "Puntaje centrales de riesgo", scoreOperator, scoreLimitCasted, scoreOptions);
-				tree.insertNode("2", "Puntaje centrales de riesgo", "No sé que hacer", 0, scoreOptions);
+				tree.insertNode("2", "Puntaje centrales de riesgo", "Crédito rechazado", 0, scoreOptions);
 				//	tree.insertNode("2", "Puntaje centrales de riesgo", scoreOperator, scoreLimitCasted);
 				
 				JOptionPane.showMessageDialog(null, "Definiciones del árbol creadas correctamente");
