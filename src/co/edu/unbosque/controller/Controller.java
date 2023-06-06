@@ -11,6 +11,10 @@ import co.edu.unbosque.view.MainView;
 
 public class Controller implements ActionListener {
 	
+	
+	//TRABAJO REALIZADO POR: EDISON BELTRAN, JOHANN TONCON, JULIAN DAVID
+	
+	
 	private MainView mv;
 	private Tree tree;
 	
@@ -41,7 +45,7 @@ public class Controller implements ActionListener {
 			try {
 				
 				//Se setean los campos cada variable
-				mv.getFieldForOptionDefine().setText("      ");
+				mv.getFieldForOptionDefine().setText("       ");
 				mv.getLabelInputVar().setText("Edad: ");
 				
 				JOptionPane.showOptionDialog(null, mv.getPanelAux(), "Requisitos para el crédito", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, mv.getArrForOptionsDefine());
@@ -59,16 +63,25 @@ public class Controller implements ActionListener {
 					break;
 				}
 				
+				//Se le pide al usuario qué va a pasar si la condición que escogío se cumple al momento de aplicar el árbol
 				String ageOptions = JOptionPane.showInputDialog("Si la edad del solicitante es "+ageOperator+" "+ageLimit+": \n"
 						+ "1. Conectar con la siguiente premisa\n"
 						+ "2. Rechazar\n"
 						+ "3. No sé que hacer");
 				
+				//Para verificar que la entrada no sea diferente a 1,2,3
 				if(!ageOptions.matches("[1-3]{1}")) {
 					JOptionPane.showMessageDialog(null, "Debe ingresar un valor de 1 a 3");
 					break;
 				}
 				
+				//El primer parametro de los nodos es para decirle al nodo hacia dónde coger
+				//Si es uno, va hacia a la izquierda (true)
+				//Si es 2, va hacia la derecha cuando encuentre el nodo con el segundo atributo igual
+				//Si es 3 va hacia la derecha sin importar el nivel 
+				
+				//En caso de los nodos que tienen 2 y 3 tienen el atributo operador con el texto de rechazado o no se que hacer, ya que
+				//esos nodos no usan el operador porque ahí acaba el ciclo
 				tree.insertNode("1", "Edad", ageOperator, ageLimitCasted, ageOptions);
 				tree.insertNode("3", "Edad", "Crédito rechazado", 0, ageOptions);
 				
@@ -141,6 +154,9 @@ public class Controller implements ActionListener {
 				
 				tree.insertNode("1", "Monto solicitado", amountOperator, amountLimitCasted, amountOptions);
 				tree.insertNode("2", "Monto solicitado", "Crédito rechazado", 0, amountOptions);
+				
+				
+				
 				
 				mv.getFieldForOptionDefine().setText("       ");
 				mv.getLabelInputVar().setText("Ptos centrales de riesgo: ");

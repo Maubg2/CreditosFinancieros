@@ -783,7 +783,10 @@ public class Tree {
 					
 					if(scoreCasted > node.getValue() && scoreCasted <= 1000) {
 						if(node.getRule().equals("1")) {
+							insertNode("1", null, "Crédito aprobado con el valor de "+amountCasted, 0, null);
 							node = node.getLeft();
+							JOptionPane.showMessageDialog(null, node.getOperator());
+						
 						}else if(node.getRule().equals("2")) {
 							JOptionPane.showMessageDialog(null, "El puntaje debe estar entre 500 y "+node.getValue());
 							node = node.getRight();
@@ -804,7 +807,9 @@ public class Tree {
 							break;
 						}else if(node.getRule().equals("2")) {
 							if(scoreCasted >= 500 && scoreCasted <= 1000) {
+								insertNode("1", null, "Crédito aprobado con el valor de "+amountCasted, 0, null);
 								node = node.getLeft();
+								JOptionPane.showMessageDialog(null, node.getOperator());
 							}else {
 								JOptionPane.showMessageDialog(null, "Puntaje fuera de los limites permitidos");
 								break;
@@ -831,7 +836,10 @@ public class Tree {
 					
 					if(scoreCasted < node.getValue() && scoreCasted >= 500) {
 						if(node.getRule().equals("1")) {
+							insertNode("1", null, "Crédito aprobado con el valor de "+amountCasted, 0, null);
 							node = node.getLeft();
+							JOptionPane.showMessageDialog(null, node.getOperator());
+							
 						}else if(node.getRule().equals("2")) {
 							JOptionPane.showMessageDialog(null, "El puntaje debe estar de "+node.getValue()+" a 1000");
 							node = node.getRight();
@@ -852,7 +860,10 @@ public class Tree {
 							break;
 						}else if(node.getRule().equals("2")) {
 							if(scoreCasted >= 500 && scoreCasted <= 1000) {
+								insertNode("1", null, "Crédito aprobado con el valor de "+amountCasted, 0, null);
 								node = node.getLeft();
+								JOptionPane.showMessageDialog(null, node.getOperator());
+								
 							}else {
 								JOptionPane.showMessageDialog(null, "Puntaje fuera de los limites permitidos");
 								break;
@@ -879,7 +890,9 @@ public class Tree {
 					
 					if(scoreCasted >= node.getValue() && scoreCasted <= 1000) {
 						if(node.getRule().equals("1")) {
+							insertNode("1", null, "Crédito aprobado con el valor de "+amountCasted, 0, null);
 							node = node.getLeft();
+							JOptionPane.showMessageDialog(null, node.getOperator());
 						}else if(node.getRule().equals("2")) {
 							JOptionPane.showMessageDialog(null, "El puntaje debe ser de 500 a "+(node.getValue()-1));
 							node = node.getRight();
@@ -900,7 +913,9 @@ public class Tree {
 							break;
 						}else if(node.getRule().equals("2")) {
 							if(scoreCasted >= 500 && scoreCasted <= 1000) {
+								insertNode("1", null, "Crédito aprobado con el valor de "+amountCasted, 0, null);
 								node = node.getLeft();
+								JOptionPane.showMessageDialog(null, node.getOperator());
 							}else {
 								JOptionPane.showMessageDialog(null, "Puntaje fuera de los limites permitidos");
 								break;
@@ -927,7 +942,10 @@ public class Tree {
 					
 					if(scoreCasted <= node.getValue() && scoreCasted >= 500) {
 						if(node.getRule().equals("1")) {
+							insertNode("1", null, "Crédito aprobado con el valor de "+amountCasted, 0, null);
 							node = node.getLeft();
+							JOptionPane.showMessageDialog(null, node.getOperator());
+							
 						}else if(node.getRule().equals("2")) {
 							JOptionPane.showMessageDialog(null, "El puntaje debe ser de "+(node.getValue()+1)+" a 1000");
 							node = node.getRight();
@@ -948,7 +966,10 @@ public class Tree {
 							break;
 						}else if(node.getRule().equals("2")) {
 							if(scoreCasted >= 500 && scoreCasted <= 1000) {
+								insertNode("1", null, "Crédito aprobado con el valor de "+amountCasted, 0, null);
 								node = node.getLeft();
+								JOptionPane.showMessageDialog(null, node.getOperator());
+								
 							}else {
 								JOptionPane.showMessageDialog(null, "Puntaje fuera de los limites permitidos");
 								break;
@@ -975,7 +996,10 @@ public class Tree {
 					
 					if(scoreCasted != node.getValue() && scoreCasted >= 500 && scoreCasted <= 1000) {
 						if(node.getRule().equals("1")) {
+							insertNode("1", null, "Crédito aprobado con el valor de "+amountCasted, 0, null);
 							node = node.getLeft();
+							JOptionPane.showMessageDialog(null, node.getOperator());
+							
 						}else if(node.getRule().equals("2")) {
 							JOptionPane.showMessageDialog(null, "El puntaje debe ser "+node.getValue()+ " y estar en el rango permitido (500 a 1000)");
 							node = node.getRight();
@@ -996,7 +1020,10 @@ public class Tree {
 							break;
 						}else if(node.getRule().equals("2")) {
 							if(scoreCasted >= 500 && scoreCasted <= 1000) {
+								insertNode("1", null, "Crédito aprobado con el valor de "+amountCasted, 0, null);
 								node = node.getLeft();
+								JOptionPane.showMessageDialog(null, node.getOperator());
+								
 							}else {
 								JOptionPane.showMessageDialog(null, "Puntaje fuera de los limites permitidos");
 								break;
